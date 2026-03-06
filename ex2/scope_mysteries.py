@@ -24,14 +24,16 @@ def enchantment_factory(enchantment_type: str) -> callable:
     return apply
 
 
-def memory_vault() -> dict[str, callable]:
+def memory_vault():
     storage = {}
 
-    def store(key: str, value: any) -> None:
+    def store(key, value):
         storage[key] = value
 
-    def recall(key: str) -> any:
+    def recall(key):
         return storage.get(key, "Memory not found")
+
+    return {"store": store, "recall": recall}
 
 
 def main():
@@ -45,6 +47,19 @@ def main():
     enchantment2 = enchantment_factory("Frozen")
     print(f"{enchantment1('Sword')}")
     print(f"{enchantment2('Shield')}")
+    # print("\nTesting spell accumulator...")
+
+    # mana = spell_accumulator(100)
+    # print(f"Accumulated 1: {mana(50)}")  # 100 + 50 = 150
+    # print(f"Accumulated 2: {mana(20)}")  # 150 + 20 = 170
+
+    # print("\nTesting memory vault...")
+    # vault = memory_vault()
+    # if vault:
+    #     store, recall = vault["store"], vault["recall"]
+    #     store("Excalibur", "Legendary Sword")
+    #     print(f"Recall Excalibur: {recall('Excalibur')}")
+    #     print(f"Recall Unknown: {recall('Mjolnir')}")
 
 
 if __name__ == "__main__":

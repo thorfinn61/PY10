@@ -65,3 +65,16 @@ if __name__ == "__main__":
     print("Testing memoized fibonacci...")
     print(f"Fib(10): {memoized_fibonacci(10)}")
     print(f"Fib(15): {memoized_fibonacci(15)}")
+
+    # print("\nTesting partial enchanter...")
+    # enchanters = partial_enchanter(base_enchantment)
+
+    # print(enchanters["fire_enchant"](target="Sword"))
+    # print(enchanters["ice_enchant"](target="Shield"))
+
+    # print("\nTesting spell dispatcher...")
+    # dispatch = spell_dispatcher()
+    # print(dispatch(100))
+    # print(dispatch("Invisibility"))
+    # print(dispatch(["Fire", "Ice"]))
+    # print(dispatch(45.5))

@@ -37,6 +37,24 @@ def main():
     print(f"Original: {basic_damage('Goblin')}, "
           f"Amplified: {amplified('Goblin')}")
 
+    # print("\nTesting conditional caster...")
+
+    # def is_valid_target(target):
+    #     return len(target) > 3
+
+    # cast_on_target = conditional_caster(is_valid_target, fireball)
+
+    # print(f"Cast on 'Orc': {cast_on_target('Orc')}")
+    # print(f"Cast on 'Dragon': {cast_on_target('Dragon')}")
+
+    # print("\nTesting spell sequence...")
+    # spells = [fireball, heal, lambda t: f"Buffs {t}"]
+    # sequence = spell_sequence(spells)
+
+    # results = sequence("Hero")
+    # for r in results:
+    #     print(f"Sequence step: {r}")
+
 
 if __name__ == "__main__":
     main()

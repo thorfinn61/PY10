@@ -42,3 +42,21 @@ if __name__ == "__main__":
     transformed = spell_transformer(spells)
 
     print(" ".join(transformed))
+
+    # Optionnel
+    # print("\nTesting power filter...")
+    # mages = [
+    #     {"name": "Gandalf", "power": 95},
+    #     {"name": "Harry", "power": 40},
+    #     {"name": "Hermione", "power": 88}
+    # ]
+    # strong_mages = power_filter(mages, 80)
+    # print(f"Strong mages count: {len(strong_mages)}")
+    # for mage in strong_mages:
+    #     print(f"- {mage['name']} ({mage['power']} power)")
+
+    # print("\nTesting mage stats...")
+    # stats = mage_stats(mages)
+    # print(f"Max: {stats['max_power']}")
+    # print(f"Min: {stats['min_power']}")
+    # print(f"Average: {stats['avg_power']}")
