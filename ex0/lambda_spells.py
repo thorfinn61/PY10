@@ -1,5 +1,3 @@
-from typing import List, Dict
-
 def artifact_sorter(artifacts: list[dict]) -> list[dict]:
     return sorted(artifacts, key=lambda x: x['power'], reverse=True)
 
@@ -20,10 +18,11 @@ def mage_stats(mages: list[dict]) -> dict:
     avg_power = round(total_power / len(mages), 2)
 
     return {
-        "max_power" : max_power,
-        "min_power" : min_power,
-        "avg_power" : avg_power
+        "max_power": max_power,
+        "min_power": min_power,
+        "avg_power": avg_power
     }
+
 
 if __name__ == "__main__":
     print("\nTesting artifact sorter...")
@@ -32,13 +31,14 @@ if __name__ == "__main__":
         {"name": "Fire Staff", "power": 92, "type": "weapon"}
     ]
     sorted_arts = artifact_sorter(artifacts)
-    
+
     art1 = sorted_arts[0]
     art2 = sorted_arts[1]
-    print(f"{art1['name']} ({art1['power']} power) comes before {art2['name']} ({art2['power']} power)")
+    print(f"{art1['name']} ({art1['power']} power) comes before "
+          f"{art2['name']} ({art2['power']} power)")
 
     print("\nTesting spell transformer...")
     spells = ["fireball", "heal", "shield"]
     transformed = spell_transformer(spells)
-    
+
     print(" ".join(transformed))

@@ -1,6 +1,7 @@
 from functools import reduce, partial, lru_cache, singledispatch
 import operator
 
+
 def spell_reducer(spells: list[int], operation: str) -> int:
     operations = {
         "add": operator.add,
@@ -11,17 +12,22 @@ def spell_reducer(spells: list[int], operation: str) -> int:
     op_func = operations.get(operation)
     return reduce(op_func, spells)
 
+
 def base_enchantment(power, element, target):
     return f"Enchanting {target} with {element} power {power}!"
+
 
 def partial_enchanter(base_enchantment: callable) -> dict[str, callable]:
     return {
         "fire_enchant": partial(base_enchantment, power=50, element="Fire"),
         "ice_enchant": partial(base_enchantment, power=50, element="Ice"),
-        "lightning_enchant": partial(base_enchantment, power=50, element="Lightning")
+        "lightning_enchant": partial(
+            base_enchantment, power=50, element="Lightning"
+        )
     }
 
-@lru_cache(maxsize=None) 
+
+@lru_cache(maxsize=None)
 def memoized_fibonacci(n: int) -> int:
     if n < 2:
         return n
@@ -46,6 +52,7 @@ def spell_dispatcher():
         return f"Multi-casting {len(multi_cast)} spells: {multi_cast}"
 
     return dispatcher
+
 
 if __name__ == "__main__":
     spells = [10, 20, 30, 40]
