@@ -1,4 +1,7 @@
-def mage_counter() -> callable:
+from typing import Callable, Any, Dict
+
+
+def mage_counter() -> Callable:
     count = 0
 
     def counter() -> int:
@@ -8,7 +11,7 @@ def mage_counter() -> callable:
     return counter
 
 
-def spell_accumulator(initial_power: int) -> callable:
+def spell_accumulator(initial_power: int) -> Callable:
     total_power = initial_power
 
     def accumulate(amount: int) -> int:
@@ -18,19 +21,19 @@ def spell_accumulator(initial_power: int) -> callable:
     return accumulate
 
 
-def enchantment_factory(enchantment_type: str) -> callable:
+def enchantment_factory(enchantment_type: str) -> Callable:
     def apply(item_name: str) -> str:
         return f"{enchantment_type} {item_name}"
     return apply
 
 
-def memory_vault():
-    storage = {}
+def memory_vault() -> Dict[str, Callable]:
+    storage: Dict[Any, Any] = {}
 
-    def store(key, value):
+    def store(key: Any, value: Any) -> None:
         storage[key] = value
 
-    def recall(key):
+    def recall(key: Any) -> Any:
         return storage.get(key, "Memory not found")
 
     return {"store": store, "recall": recall}

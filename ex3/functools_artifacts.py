@@ -1,28 +1,31 @@
 from functools import reduce, partial, lru_cache, singledispatch
 import operator
+from typing import Callable, Any, Dict
 
 
 def spell_reducer(spells: list[int], operation: str) -> int:
-    operations = {
+    operations: Dict[str, Callable] = {
         "add": operator.add,
         "multiply": operator.mul,
         "max": max,
         "min": min
     }
-    op_func = operations.get(operation)
+    op_func: Callable | None = operations.get(operation)
+    if op_func is None:
+        raise ValueError(f"Unknown operation: {operation}")
     return reduce(op_func, spells)
 
 
-def base_enchantment(power, element, target):
+def base_enchantment(power: int, element: str, target: str) -> str:
     return f"Enchanting {target} with {element} power {power}!"
 
 
-def partial_enchanter(base_enchantment: callable) -> dict[str, callable]:
+def partial_enchanter(base_func: Callable) -> Dict[str, Callable]:
     return {
-        "fire_enchant": partial(base_enchantment, power=50, element="Fire"),
-        "ice_enchant": partial(base_enchantment, power=50, element="Ice"),
+        "fire_enchant": partial(base_func, power=50, element="Fire"),
+        "ice_enchant": partial(base_func, power=50, element="Ice"),
         "lightning_enchant": partial(
-            base_enchantment, power=50, element="Lightning"
+            base_func, power=50, element="Lightning"
         )
     }
 
@@ -34,21 +37,21 @@ def memoized_fibonacci(n: int) -> int:
     return memoized_fibonacci(n - 1) + memoized_fibonacci(n - 2)
 
 
-def spell_dispatcher():
+def spell_dispatcher() -> Callable:
     @singledispatch
-    def dispatcher(spell):
+    def dispatcher(spell: Any) -> str:
         return f"Unknown spell type: {spell}"
 
     @dispatcher.register(int)
-    def _(damage):
+    def _(damage: int) -> str:
         return f"Casting Damage Spell: {damage} HP"
 
     @dispatcher.register(str)
-    def _(enchantment):
+    def _(enchantment: str) -> str:
         return f"Applying Enchantment: {enchantment}"
 
     @dispatcher.register(list)
-    def _(multi_cast):
+    def _(multi_cast: list) -> str:
         return f"Multi-casting {len(multi_cast)} spells: {multi_cast}"
 
     return dispatcher
